@@ -1,0 +1,18 @@
+
+# Fichiers de configuration locaux et secrets
+.env
+.env.*
+!.env.example
+
+# Fichiers générés par Maven
+target/
+
+# Configuration propre à IntelliJ
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# Configuration locale Smart Tomcat
+.smarttomcat/

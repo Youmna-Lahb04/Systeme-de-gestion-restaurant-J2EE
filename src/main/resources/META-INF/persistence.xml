@@ -1,0 +1,33 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             version="3.1">
+
+    <persistence-unit name="restaurantPU"
+                      transaction-type="RESOURCE_LOCAL">
+
+        <provider>
+            org.hibernate.jpa.HibernatePersistenceProvider>
+        </provider>
+
+        <!-- Entités du projet -->
+        <class>ma.ensaa.jee.entity.Utilisateur</class>
+        <class>ma.ensaa.jee.entity.Plat</class>
+        <class>ma.ensaa.jee.entity.Menu</class>
+        <class>ma.ensaa.jee.entity.TableRestaurant</class>
+        <class>ma.ensaa.jee.entity.Reservation</class>
+        <class>ma.ensaa.jee.entity.HistoriqueStatut</class>
+
+        <properties>
+            <property name="hibernate.hbm2ddl.auto"
+                      value="update"/>
+
+            <property name="hibernate.show_sql"
+                      value="true"/>
+
+            <property name="hibernate.format_sql"
+                      value="true"/>
+        </properties>
+
+    </persistence-unit>
+</persistence>
