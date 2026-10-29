@@ -16,3 +16,6 @@ target/
 
 # Configuration locale Smart Tomcat
 .smarttomcat/
+
+#ignoration de la table utilisateur (a supprimmer ca)
+/src/main/java/ensaa/jee/entity/Utilisateur.java
