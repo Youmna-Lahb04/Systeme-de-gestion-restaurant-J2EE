@@ -1,4 +1,8 @@
 package ma.ensaa.jee.entity.enums;
 
-public class Categorie {
+public enum Categorie {
+    ENTREE,
+    PLAT_PRINCIPAL,
+    DESSERT,
+    BOISSON
 }

@@ -49,6 +49,11 @@
           <artifactId>jakarta.servlet.jsp.jstl</artifactId>
           <version>3.0.1</version>
       </dependency>
+      <dependency>
+          <groupId>org.hibernate.validator</groupId>
+          <artifactId>hibernate-validator</artifactId>
+          <version>8.0.6.Final</version>
+      </dependency>
   </dependencies>
   <build>
     <finalName>GestionRestaurant</finalName>

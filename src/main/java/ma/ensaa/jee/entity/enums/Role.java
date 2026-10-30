@@ -1,4 +1,7 @@
 package ma.ensaa.jee.entity.enums;
 
-public class Role {
+public enum Role {
+    CLIENT,
+    EMPLOYE,
+    ADMIN
 }
