@@ -1,14 +1,12 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence"
              version="3.1">
-
+    <!-- Nom de lunitee de persistence-->
+    <!-- la gestion des transactions se fait explicitement dans les DAO-->
     <persistence-unit name="restaurantPU"
                       transaction-type="RESOURCE_LOCAL">
-
-        <provider>
-            org.hibernate.jpa.HibernatePersistenceProvider>
-        </provider>
+        <!-- Qui va implementer le JPA , c'est hibernate -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- Entités du projet -->
         <class>ma.ensaa.jee.entity.Utilisateur</class>
@@ -18,15 +16,13 @@
         <class>ma.ensaa.jee.entity.Reservation</class>
         <class>ma.ensaa.jee.entity.HistoriqueStatut</class>
 
+        <!-- Regles de migration vers DB , auto update-->
         <properties>
-            <property name="hibernate.hbm2ddl.auto"
-                      value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
 
-            <property name="hibernate.show_sql"
-                      value="true"/>
+            <property name="hibernate.show_sql" value="true"/>
 
-            <property name="hibernate.format_sql"
-                      value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
         </properties>
 
     </persistence-unit>
