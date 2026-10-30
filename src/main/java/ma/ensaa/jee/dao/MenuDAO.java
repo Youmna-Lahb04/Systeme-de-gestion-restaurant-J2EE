@@ -1,12 +1,9 @@
 package ma.ensaa.jee.dao;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import ma.ensaa.jee.entity.Menu;
-import ma.ensaa.jee.entity.Plat;
 import ma.ensaa.jee.util.JPAUtil;
 
 public class MenuDAO {
@@ -61,7 +58,7 @@ public class MenuDAO {
             if (menus.size() > 1) {
                 throw new IllegalStateException("Plusieurs menus existent dans la base.");
             }
-            return menus.isEmpty() ? null : menus.get(0);
+            return menus.isEmpty() ? null : menus.getFirst();
 
         } finally {
             em.close();
