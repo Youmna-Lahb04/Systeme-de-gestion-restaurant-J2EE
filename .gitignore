@@ -18,4 +18,4 @@ target/
 .smarttomcat/
 
 #ignoration de la dependance validation
-pom.xml
+#pom.xml

@@ -1,5 +1,6 @@
 package ma.ensaa.jee.entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 import ma.ensaa.jee.entity.enums.Role;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -27,6 +28,7 @@ public class Utilisateur {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    @Size(min = 8)
     @NotBlank
     @Column(name = "mot_de_passe", nullable = false)
     private String motDePasse;

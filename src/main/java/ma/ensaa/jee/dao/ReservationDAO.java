@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import ma.ensaa.jee.entity.Reservation;
+import ma.ensaa.jee.entity.enums.StatutReservation;
 import ma.ensaa.jee.util.JPAUtil;
 
 import java.time.LocalDate;
@@ -37,6 +38,19 @@ public class ReservationDAO {
             em.close();
         }
     }
+//ADD partager em avec le service
+public void ajouterReservation(
+        EntityManager em,
+        Reservation reservation) {
+
+    if (em == null || reservation == null) {
+        throw new IllegalArgumentException(
+                "L'EntityManager et la réservation sont obligatoires."
+        );
+    }
+
+    em.persist(reservation);
+}
 
     // UPDATE
     public Reservation modifierReservation(Reservation reservation) {
@@ -88,7 +102,34 @@ public class ReservationDAO {
             em.close();
         }
     }
+//partage de em lors de update
+public Reservation trouverParId(
+        EntityManager em,
+        Long id) {
 
+    if (em == null || id == null) {
+        throw new IllegalArgumentException(
+                "L'EntityManager et l'identifiant sont obligatoires."
+        );
+    }
+
+    return em.find(Reservation.class, id);
+}
+    public void modifierStatut(
+            EntityManager em,
+            Reservation reservation,
+            StatutReservation nouveauStatut) {
+
+        if (em == null || reservation == null ||
+                nouveauStatut == null) {
+
+            throw new IllegalArgumentException(
+                    "Les paramètres sont obligatoires."
+            );
+        }
+
+        reservation.setStatutReservation(nouveauStatut);
+    }
     // DELETE
     public void supprimerReservation(Long id) {
 
@@ -119,6 +160,27 @@ public class ReservationDAO {
             em.close();
         }
     }
+//delete partage de em
+
+    public void supprimerReservation(EntityManager em, Long id) {
+
+        if (em == null || id == null) {
+            throw new IllegalArgumentException(
+                    "L'EntityManager et l'identifiant sont obligatoires."
+            );
+        }
+
+        Reservation reservation =
+                em.find(Reservation.class, id);
+
+        if (reservation == null) {
+            throw new IllegalArgumentException(
+                    "La réservation n'existe pas."
+            );
+        }
+
+        em.remove(reservation);
+    }
 
     // GET-BY-ID
     public Reservation trouverParId(Long id) {
@@ -126,7 +188,18 @@ public class ReservationDAO {
         EntityManager em = emf.createEntityManager();
 
         try {
-            return em.find(Reservation.class, id);
+            //return em.find(Reservation.class, id);
+            return em.createQuery(
+                            "SELECT r FROM Reservation r " +
+                                    "LEFT JOIN FETCH r.client " +
+                                    "LEFT JOIN FETCH r.tableRestaurant " +
+                                    "WHERE r.id = :id",
+                            Reservation.class
+                    )
+                    .setParameter("id", id)
+                    .getResultStream()
+                    .findFirst()
+                    .orElse(null);
 
         } finally {
             em.close();
@@ -140,7 +213,10 @@ public class ReservationDAO {
 
         try {
             return em.createQuery(
-                    "SELECT r FROM Reservation r ORDER BY r.id DESC",
+                    "SELECT r FROM Reservation r " +
+                            "LEFT JOIN FETCH r.client " +
+                            "LEFT JOIN FETCH r.tableRestaurant " +
+                            "ORDER BY r.id DESC",
                     Reservation.class
             ).getResultList();
 
@@ -157,6 +233,7 @@ public class ReservationDAO {
         try {
             return em.createQuery(
                             "SELECT r FROM Reservation r " +
+                                    "LEFT JOIN FETCH r.tableRestaurant " +
                                     "WHERE r.client.id = :clientId " +
                                     "ORDER BY r.dateReservation DESC",
                             Reservation.class
@@ -178,6 +255,7 @@ public class ReservationDAO {
         try {
             return em.createQuery(
                             "SELECT r FROM Reservation r " +
+                                    "LEFT JOIN FETCH r.client " +
                                     "WHERE r.tableRestaurant.id = :tableId " +
                                     "AND r.dateReservation = :date " +
                                     "ORDER BY r.heureDebut",

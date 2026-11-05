@@ -1,6 +1,7 @@
 
 package ma.ensaa.jee.util;
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
@@ -48,6 +49,10 @@ public class JPAUtil {
     //permet aux classes DAO d'obtenir l'usine, et de creer des entityManagers
     public static EntityManagerFactory getEntityManagerFactory() {
         return emf;
+    }
+    // Créer et retourner un EntityManager
+    public static EntityManager getEntityManager() {
+        return emf.createEntityManager();
     }
 
     public static void close() {
