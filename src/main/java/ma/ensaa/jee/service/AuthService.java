@@ -17,8 +17,6 @@ public class AuthService {
                     "L'email et le mot de passe sont obligatoires."
             );
         }
-        //normaliser l'email
-        email = email.trim().toLowerCase();
         Utilisateur utilisateur =
                 utilisateurDAO.rechercherUtilisateurEmail(email);
         if (utilisateur == null) {
@@ -46,22 +44,22 @@ public class AuthService {
 
 
     public Utilisateur inscrireClient(
-            Utilisateur utilisateur,
-            String motDePasse
+            Utilisateur utilisateur
     ){
         if (utilisateur == null) {
             throw new IllegalArgumentException(
                     "Les informations de l'utilisateur sont obligatoires."
             );
         }
+
+
         if (utilisateur.getEmail() == null
                 || utilisateur.getEmail().isBlank()) {
             throw new IllegalArgumentException(
                     "L'email est obligatoire."
             );
         }
-
-        String email = utilisateur.getEmail().trim().toLowerCase();
+        String email= utilisateur.getEmail();
         utilisateur.setEmail(email);
         Utilisateur utilisateurExistant =
                 utilisateurDAO.rechercherUtilisateurEmail(email);
@@ -71,6 +69,7 @@ public class AuthService {
                     "Cette adresse email est déjà utilisée."
             );
         }
+        String motDePasse = utilisateur.getMotDePasse();
         if (motDePasse == null || motDePasse.length() < 8) {
             throw new IllegalArgumentException("Le mot de passe doit contenir au moins 8 caractères.");
         }

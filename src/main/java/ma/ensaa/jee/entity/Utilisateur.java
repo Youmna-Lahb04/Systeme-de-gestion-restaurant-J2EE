@@ -28,7 +28,6 @@ public class Utilisateur {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Size(min = 8)
     @NotBlank
     @Column(name = "mot_de_passe", nullable = false)
     private String motDePasse;
