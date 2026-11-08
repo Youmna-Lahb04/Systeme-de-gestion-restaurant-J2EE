@@ -123,6 +123,16 @@ public class TableDAO {
             em.close();
         }
     }
+
+    // GET-BY-ID avec EntityManager partagé
+    public TableRestaurant trouverParId(EntityManager em, Long id) {
+        if (em == null || id == null) {
+            throw new IllegalArgumentException("L'EntityManager et l'identifiant sont obligatoires.");
+        }
+
+        return em.find(TableRestaurant.class, id);
+    }
+
     //GET-by-Numero
     public TableRestaurant trouverParNumero(Integer numero) {
         EntityManager em = emf.createEntityManager();

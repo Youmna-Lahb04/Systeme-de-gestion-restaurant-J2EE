@@ -269,4 +269,23 @@ public Reservation trouverParId(
             em.close();
         }
     }
+
+    // GET-BY-TABLE-ET-DATE et statut en_attente ou connfirmée avec em partagé
+    public List<Reservation> trouverParTableEtDate(EntityManager em, Long tableId, LocalDate date) {
+        if (em == null || tableId == null || date == null) {
+            throw new IllegalArgumentException("Paramètres obligatoires");
+        }
+        return em.createQuery(
+                        "SELECT r FROM Reservation r " +
+                                "WHERE r.tableRestaurant.id = :tableId " +
+                                "AND r.dateReservation = :date " +
+                                "AND r.statutReservation NOT IN (:annulee, :refusee)",
+                        Reservation.class
+                )
+                .setParameter("tableId", tableId)
+                .setParameter("date", date)
+                .setParameter("annulee", StatutReservation.ANNULEE)
+                .setParameter("refusee", StatutReservation.REFUSEE)
+                .getResultList();
+    }
 }

@@ -4,6 +4,9 @@ import jakarta.validation.constraints.Size;
 import ma.ensaa.jee.entity.enums.Role;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Email;
@@ -32,6 +35,9 @@ public class Utilisateur {
     @Column(name = "mot_de_passe", nullable = false)
     private String motDePasse;
 
+    @Column(name = "telephone", length = 20)
+    private String telephone;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "role",nullable = false)
@@ -43,6 +49,10 @@ public class Utilisateur {
     @NotNull
     @Column(name = "date_creation", nullable = false, updatable = false)
     private LocalDateTime dateCreation;
+
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+    private List<Reservation> reservations = new ArrayList<>();
+
 
     public Utilisateur() {}
 
@@ -92,6 +102,10 @@ public class Utilisateur {
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
     }
+
+    public String getTelephone() {return telephone;}
+
+    public void setTelephone(String telephone) {this.telephone = telephone;}
 
     public Role getRole() {
         return role;

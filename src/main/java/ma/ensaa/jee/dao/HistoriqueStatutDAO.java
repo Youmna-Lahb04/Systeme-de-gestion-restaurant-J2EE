@@ -31,6 +31,7 @@ public class HistoriqueStatutDAO {
         em.persist(historique);
     }
 
+
     // GET-ALL
     public List<HistoriqueStatut> trouverToutes() {
 

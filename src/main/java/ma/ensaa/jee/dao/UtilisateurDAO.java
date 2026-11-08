@@ -45,6 +45,15 @@ public class UtilisateurDAO {
         }
     }
 
+    // GET-BY-ID avec em partagé
+    public Utilisateur trouverParId(EntityManager em, Long id) {
+        if (em == null || id == null) {
+            throw new IllegalArgumentException("L'EntityManager et l'identifiant sont obligatoires.");
+        }
+
+        return em.find(Utilisateur.class, id);
+    }
+
     // GET-BY-EMAIL
     public Utilisateur rechercherUtilisateurEmail(String email) {
         EntityManager em = emf.createEntityManager();
@@ -123,6 +132,7 @@ public class UtilisateurDAO {
             existant.setNom(utilisateur.getNom());
             existant.setPrenom(utilisateur.getPrenom());
             existant.setEmail(utilisateur.getEmail());
+            existant.setTelephone(utilisateur.getTelephone());
             et.commit();
             return existant;
 

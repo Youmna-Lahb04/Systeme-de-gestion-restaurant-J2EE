@@ -43,7 +43,7 @@ public class UtilisateurService {
        utilisateur.setActif(true);
        utilisateurDAO.ajouterUtilisateur(utilisateur);
        return utilisateur;
-    };
+    }
 
     public Utilisateur modifierUtilisateur(Utilisateur utilisateur, Long utilisateurConnecteId)
     {
@@ -75,10 +75,11 @@ public class UtilisateurService {
         utilisateurExistant.setNom(utilisateur.getNom().trim());
         utilisateurExistant.setPrenom(utilisateur.getPrenom().trim());
         utilisateurExistant.setEmail(email);
+        utilisateurExistant.setTelephone(utilisateur.getTelephone());
 
         utilisateurDAO.modifierUtilisateur(utilisateurExistant);
         return utilisateur;
-    };
+    }
 
     public void supprimerUtilisateur(Long id, Long utilisateurConnecteId)
     {
@@ -99,7 +100,7 @@ public class UtilisateurService {
 
         utilisateurDAO.archiverUtilisateur(id);
 
-    };
+    }
 
     public Utilisateur getUtilisateurById(Long id, Long utilisateurConnecteId)
     {
@@ -112,12 +113,12 @@ public class UtilisateurService {
             throw new IllegalArgumentException("Utilisateur n'existe pas");
         }
         return utilisateur;
-    };
+    }
 
     public List<Utilisateur> getAllUtilisateurs(Long utilisateurConnecteId)
     {
         authorizationService.verifierRole(utilisateurConnecteId, Role.ADMIN);
         List<Utilisateur> utilisateurs= utilisateurDAO.listeUtilisateursTous();
         return utilisateurs;
-    };
+    }
 }
