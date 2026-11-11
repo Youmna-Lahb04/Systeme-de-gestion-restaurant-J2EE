@@ -1,4 +1,4 @@
-package ma.ensaa.jee.controller;
+package ma.ensaa.jee.controller.client;
 
 public class MesReservationsServlet {
 }
