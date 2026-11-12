@@ -51,8 +51,12 @@ public class AuthService {
                     "Les informations de l'utilisateur sont obligatoires."
             );
         }
-
-
+        if (utilisateur.getNom() == null || utilisateur.getNom().isBlank()) {
+            throw new IllegalArgumentException("Le nom est obligatoire.");
+        }
+        if (utilisateur.getPrenom() == null || utilisateur.getPrenom().isBlank()) {
+            throw new IllegalArgumentException("Le prénom est obligatoire.");
+        }
         if (utilisateur.getEmail() == null
                 || utilisateur.getEmail().isBlank()) {
             throw new IllegalArgumentException(
