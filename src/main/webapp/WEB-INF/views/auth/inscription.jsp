@@ -43,7 +43,7 @@
                     </div>
                     <% } %>
 
-                    <form action="<%= contextPath %>/inscription" method="post">
+                    <form action="<%= contextPath %>/inscription" method="post" autocomplete="off">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="nom" class="form-label">Nom <span class="text-danger">*</span></label>
@@ -60,7 +60,7 @@
                         <div class="mb-3">
                             <label for="email" class="form-label">Adresse Email <span class="text-danger">*</span></label>
                             <input type="email" class="form-control" id="email" name="email"
-                                   value="<%= email %>" required placeholder="nom@exemple.com">
+                                   value="<%= email %>" required placeholder="nom@exemple.com" autocomplete="off">
                         </div>
 
                         <div class="mb-3">
@@ -73,12 +73,12 @@
                             <div class="col-md-6 mb-3">
                                 <label for="motDePasse" class="form-label">Mot de passe <span class="text-danger">*</span></label>
                                 <input type="password" class="form-control" id="motDePasse" name="motDePasse"
-                                       required minlength="8" placeholder="Min. 8 caractères">
+                                       required minlength="8" placeholder="Min. 8 caractères" autocomplete="new-password">
                             </div>
                             <div class="col-md-6 mb-4">
                                 <label for="confirmationMotDePasse" class="form-label">Confirmation <span class="text-danger">*</span></label>
                                 <input type="password" class="form-control" id="confirmationMotDePasse" name="confirmationMotDePasse"
-                                       required minlength="8" placeholder="Confirmer">
+                                       required minlength="8" placeholder="Confirmer" autocomplete="new-password">
                             </div>
                         </div>
 
