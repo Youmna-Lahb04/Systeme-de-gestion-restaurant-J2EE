@@ -39,4 +39,8 @@ public class TableRestaurant {
     public void setCapacite(Integer capacite) {
         this.capacite = capacite;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

@@ -125,15 +125,20 @@
                         </table>
                     </div>
 
-                    <hr class="my-4">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <a href="<%= contextPath %>/admin/menu" class="small text-secondary text-decoration-none">
-                            <i class="bi bi-card-checklist"></i> Gérer le Menu & Plats
-                        </a>
-                        <a href="<%= contextPath %>/logout" class="small text-danger text-decoration-none fw-semibold">
-                            <i class="bi bi-box-arrow-right"></i> Déconnexion
-                        </a>
-                    </div>
+                              <hr class="my-4">
+                              <div class="d-flex justify-content-between align-items-center">
+                                  <div class="d-flex gap-3">
+                                      <a href="<%= contextPath %>/admin/menu" class="small text-secondary text-decoration-none">
+                                          <i class="bi bi-card-checklist"></i> Gérer le Menu & Plats
+                                      </a>
+                                      <a href="<%= contextPath %>/admin/tables" class="small text-secondary text-decoration-none">
+                                          <i class="bi bi-grid-3x3-gap"></i> Gérer les Tables
+                                      </a>
+                                  </div>
+                                  <a href="<%= contextPath %>/logout" class="small text-danger text-decoration-none fw-semibold">
+                                      <i class="bi bi-box-arrow-right"></i> Déconnexion
+                                  </a>
+                              </div>
 
                 </div>
             </div>

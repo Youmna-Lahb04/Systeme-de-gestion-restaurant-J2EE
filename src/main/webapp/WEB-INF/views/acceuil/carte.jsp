@@ -125,32 +125,49 @@
                         <% } %>
                     </div>
 
-                    <hr class="my-4">
-                    <div class="text-center">
-                        <% if (userConnecte != null) { %>
-                        <p class="small text-muted mb-2">
-                            Connecté en tant que <strong><%= userConnecte.getPrenom() %> <%= userConnecte.getNom() %></strong>
-                            (<%= userConnecte.getRole() %>)
-                        </p>
-                        <% if (userConnecte.getRole() == ma.ensaa.jee.entity.enums.Role.ADMIN) { %>
-                        <a href="<%= contextPath %>/admin/personnel" class="text-decoration-none fw-semibold small me-3">
-                            <i class="bi bi-gear-fill"></i> Espace Admin
-                        </a>
-                        <% } %>
-                        <a href="<%= contextPath %>/logout" class="small text-danger text-decoration-none">
-                            <i class="bi bi-box-arrow-right"></i> Se déconnecter
-                        </a>
-                        <% } else { %>
-                        <p class="small text-muted mb-1">
-                            Vous souhaitez passer une commande ou réserver une table ?
-                            <a href="<%= contextPath %>/login" class="text-decoration-none fw-semibold">Se connecter</a>
-                        </p>
-                        <p class="small text-muted mb-0">
-                            Pas encore de compte ?
-                            <a href="<%= contextPath %>/inscription" class="text-decoration-none fw-semibold">S'inscrire</a>
-                        </p>
-                        <% } %>
-                    </div>
+                                     <hr class="my-4">
+                                     <div class="text-center">
+                                         <% if (userConnecte != null) { %>
+                                         <p class="small text-muted mb-2">
+                                             Connecté en tant que <strong><%= userConnecte.getPrenom() %> <%= userConnecte.getNom() %></strong>
+                                             (<%= userConnecte.getRole() %>)
+                                         </p>
+
+                                         <!-- Actions Réservations pour client ou utilisateur connecté -->
+                                         <div class="d-flex justify-content-center align-items-center gap-2 mb-3">
+                                             <a href="<%= contextPath %>/client/reserver" class="btn btn-outline-primary btn-sm">
+                                                 <i class="bi bi-calendar-check me-1"></i> Réserver une table
+                                             </a>
+                                             <a href="<%= contextPath %>/client/mes-reservations" class="btn btn-outline-secondary btn-sm">
+                                                 <i class="bi bi-clock-history me-1"></i> Mes Réservations
+                                             </a>
+                                         </div>
+
+                                         <% if (userConnecte.getRole() == ma.ensaa.jee.entity.enums.Role.ADMIN) { %>
+                                         <a href="<%= contextPath %>/admin/personnel" class="text-decoration-none fw-semibold small me-3">
+                                             <i class="bi bi-gear-fill"></i> Espace Admin
+                                         </a>
+                                         <% } %>
+                                         <a href="<%= contextPath %>/logout" class="small text-danger text-decoration-none">
+                                             <i class="bi bi-box-arrow-right"></i> Se déconnecter
+                                         </a>
+
+                                         <% } else { %>
+
+                                         <p class="small text-muted mb-2">
+                                             Vous souhaitez passer une commande ou réserver une table ?
+                                         </p>
+                                         <div class="d-flex justify-content-center gap-2 mb-2">
+                                             <a href="<%= contextPath %>/login" class="btn btn-primary btn-sm">
+                                                 <i class="bi bi-box-arrow-in-right me-1"></i> Se connecter
+                                             </a>
+                                             <a href="<%= contextPath %>/inscription" class="btn btn-outline-secondary btn-sm">
+                                                 <i class="bi bi-person-plus me-1"></i> S'inscrire
+                                             </a>
+                                         </div>
+
+                                         <% } %>
+                                     </div>
 
                 </div>
             </div>
